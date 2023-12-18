@@ -1,9 +1,0 @@
-React notes;
-
-*JSX
-
-*STATE
-
-*HOOKS
-
-*ROUTER
