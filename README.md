@@ -3,7 +3,7 @@
 ******-Projenin veritabanı database dosyası içerisinde bulunmaktadır.-*****
 
 proje kurulumunda indirilmesi gerekn npm paketler;
-npm i express body-parser express-session ejs express-fileupload formidable express-fileupload
+npm i body-parser bootstrap dotenv ejs express express-fileupload express-session formidable fs mysql nodemon --save
 
 
 
