@@ -1,3 +1,15 @@
+
+
+******-Projenin veritabanı database dosyası içerisinde bulunmaktadır.-*****
+
+proje kurulumunda indirilmesi gerekn npm paketler;
+npm i express body-parser express-session ejs express-fileupload formidable
+
+
+
+
+
+
 Projenin özeti:
 -Uygulamada öğerenciler,öğretmenlerin yaptığı, duyuru mesajlarını ve ek pdf dosyasını görebiliyor.
 ![yoneticiDuyuru1](https://github.com/serhatsahin28/sinav-sistemi/assets/95092280/1041fef7-26be-4366-807a-416fcf7b1fdd)
@@ -21,9 +33,11 @@ Projenin özeti:
 
 
  -Öğretmen sınav tarihini ve saatini sınavlarım içerisinden görebilir,değiştirebilir.
+![yoneticiSınav3](https://github.com/serhatsahin28/sinav-sistemi/assets/95092280/038c03b3-08ea-496f-9b0f-3ad1d7617bb3)
+![yoneticiSınav4](https://github.com/serhatsahin28/sinav-sistemi/assets/95092280/59f25166-1c7a-4408-ae37-43fd25475de1)
 
 
- -Öğrenci Akitf olan sınavlarını görebiliyor ve katılabiliyor 
+ -Öğrenci Aktif olan sınavlarını görebilir ve katılabilir 
  
 ![ogrenciSınav1](https://github.com/serhatsahin28/sinav-sistemi/assets/95092280/9bc3a252-126b-451f-9da5-b4867db349b3)
 
