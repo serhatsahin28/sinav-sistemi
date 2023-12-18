@@ -1,0 +1,90 @@
+<%-include("header")%>
+    <div class="container">
+      <div class="row justify-content-center">
+        <%result.forEach((r)=>{
+
+
+          let dersSayısı=0;
+          let genelOrtalama=0;
+          let dersOrtalama=0;
+          let durum="";
+          result2.forEach((v)=>{
+
+          dersOrtalama=v.puanToplam/v.sınavSayısı;
+            
+
+
+          dersSayısı++;
+
+          genelOrtalama=dersOrtalama+genelOrtalama;
+
+
+          });
+
+          genelOrtalama=genelOrtalama/dersSayısı;
+
+
+if(genelOrtalama>=50){
+
+   durum="Geçti";
+}
+else{
+
+  durum="kaldı";
+}
+
+
+          %>
+
+          <div class="col-md-5 ">
+            <h1>Anasayfa</h1>
+            <div class="card">
+              <div class="card-body col-12">
+
+
+
+                <h5 class="card-title">Öğrenci Bilgileri</h5>
+                <p class="card-text">Öğrenci ismi: <span id="studentName">
+                    <%=r.Ad%>
+                  </span></p>
+                <p class="card-text">Soyisim: <span id="studentSurname">
+                    <%=r.Soyad%>
+                  </span></p>
+                <p class="card-text">Numara: <span id="studentAge">
+                    <%=r.no%>
+                  </span></p>
+
+                <p class="card-text">Ders ortalaması:<span id="Ortalama"></span>
+
+                  <%= genelOrtalama %>
+                </p>
+                <p class="card-text">Sene sonu durum:<span id="Durum">
+                    <%= durum %>
+                  </span></p>
+
+
+                <% });%>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+
+
+<%-include("footer")%>
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+<%-include("header")%>
+
+        <h1>Sınav başladı</h1>
+
+
+        <% let i=0; %>
+
+            <div class="row">
+                <form class="col-12" method="post" action="/sinavKontrol" >
+                    <input type="hidden" name="sınavId" value="<%=result[0].sınavId%>">
+
+                    <% result.forEach(v=> { %>
+
+                        <% i++; %>
+                            <h1>Soru <%= i %>
+                            </h1>
+                            <h4>
+                                <%= v.title %>
+                            </h4>
+
+                            <% let select1=v.select1; %>
+                                <% let select2=v.select2; %>
+                                    <% let select3=v.select3; %>
+                                        <% let select4=v.select4; %>
+
+                                            <% let secenekler=[select1, select2, select3, select4]; %>
+
+                                                <% function karistir(dizi) { %>
+                                                    <% for (let i=dizi.length - 1; i> 0; i--) { %>
+                                                        <% const j=Math.floor(Math.random() * (i + 1)); %>
+                                                            <% [dizi[i], dizi[j]]=[dizi[j], dizi[i]]; %>
+                                                                <% } %>
+                                                                    <% return dizi; %>
+                                                                        <% } %>
+
+                                                                            <% let
+                                                                                rastgeleSecenekler=karistir(secenekler);
+                                                                                %>
+
+                                                                                <% rastgeleSecenekler.forEach(function(secenek)
+                                                                                    { %>
+                                                                                    <p>
+                                                                                        <input type="radio"
+                                                                                            id="soru<%=v.id%>"
+                                                                                            name="<%=v.soruId%>"
+                                                                                            value="<%= secenek %>">
+                                                                                        <label for="<%= secenek %>">
+                                                                                            <%= secenek %>
+                                                                                        </label><br>
+                                                                                    </p>
+                                                                                    <% }); %>
+
+                                                                                        <% }); %>
+
+
+                                                                                            <input type="submit">
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <%-include("footer")%>

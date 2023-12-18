@@ -1,0 +1,110 @@
+<%-include("yonetimHeader")%>
+
+
+
+<br>
+        <div class="container">
+            <div class="row">
+
+
+                <% 
+                
+                let i =0;
+                result.forEach(v=>{
+
+                    i++;
+                    const date = new Date(v.sinavTarih);let localDate = date.toLocaleString("tr-TR", {
+                    format: "dd.MM.yyyy"
+                    });
+
+                    localDate = localDate.substring(0,10 );
+                    %>
+
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Sınav adı</th>
+                                <th scope="col">Sınav Başlangıç saati</th>
+                                <th scope="col">Sınav Bitiş saati</th>
+                                <th scope="col">Sınav Tarihi</th>
+                                <th scope="col">Sınav aktif mi?</th>
+                                <th scope="col">Düzenle</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <th scope="row"><%=i%></th>
+                                <td>
+                                    <%=v.dersAd%>
+                                </td>
+                                <td>
+                                    <%=v.sinavBaslangic%>
+
+                                </td>
+                                <td>
+                                    <%=v.sinavBitis%>
+
+                                </td>
+                                <td>
+                                    <%=localDate%>
+                                </td>
+
+                                <td>
+                                    <%=v.isActive==0?"aktif değil":"aktif"%>
+                                </td>
+                                <td>
+                                    <%if(v.isFinish==0){%>
+                                        <a href="/admin/sinavEdit/<%=v.sınavId%>">Edit</a>
+                                        <%} else{%>
+                                            <p></p>
+                                            <%} %>
+                                </td>
+
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+                    <%});%>
+
+
+
+
+                        <h1>Sınav ekle</h1>
+
+                        <form method="post" action="/admin/sinav">
+                            <label for="tarih">Sınav Tarihi:</label>
+                            <input type="text" name="tarih"><br><br>
+                            <label for="baslangic">Sınav başlangıç saati:</label>
+                            <input type="text" name="baslangic"><br><br>
+                            <label for="bitis">Sınav bitiş saati:</label>
+                            <input type="text" name="bitis"><br><br>
+
+                            <input type="submit" value="Sınav oluştur">
+
+                        </form>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <%-include("yonetimFooter")%>

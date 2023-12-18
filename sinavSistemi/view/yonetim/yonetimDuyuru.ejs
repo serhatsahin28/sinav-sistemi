@@ -1,0 +1,63 @@
+<%-include("yonetimHeader")%>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1>Duyurular</h1>
+
+            <form action="/admin/duyuruEkle" method="post" enctype="multipart/form-data">
+                <label for="ekleTitle">Başlık yazısı:</label> <br>
+                <input type="text" name="title"><br><br>
+                <label for="ekleTitle">Yazı:</label> <br>
+                <textarea name="messageArea" rows="4" cols="50">
+                        </textarea><br>
+                <label for="ekleTitle">Gönderilecek belge/dosya:</label> <br> <br>
+
+                <input type="file" name="file" accept=".pdf,.pptx"><br><br>
+                <input type="submit" name="submit" value="ekle"><br>
+                <br>
+            </form>
+
+            <br><br> <br><br>
+            <table>
+                <tr>
+                    <th>Başlık</th>
+                    <th>Text</th>
+                    <th>Tarih</th>
+                </tr>
+                <tr>
+                    <% result.forEach(v=>{%>
+                        <% let tarih=new Date(v.dersTarih); let gun=String(tarih.getDate()).padStart(2, '0' ); let
+                            ay=String(tarih.getMonth() + 1).padStart(2, '0' ); let yil=tarih.getFullYear(); let
+                            yeniFormat=`${gun}/${ay}/${yil}`; %>
+                            <td>
+                                <%=v.title%>
+                            </td>
+                            <td>
+                                <%=v.text%>
+                            </td>
+
+                            <td>
+                                <%=yeniFormat%>
+                            </td>
+                </tr>
+                <%});%>
+            </table>
+
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <%-include("yonetimFooter")%>

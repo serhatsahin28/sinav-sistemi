@@ -1,0 +1,92 @@
+
+<%-include("header")%>
+
+        <div class="container">
+            <div class="row justify-content-center">
+
+
+                <div class="col-md-5 ">
+                    <h1>Duyurular</h1>
+
+
+                    <% 
+                    let veriYok="" ; 
+                    if(result.length==0)
+                     { veriYok="Henüz Duyurunuz  yok.";
+                    
+                    }
+                    
+                    %>
+                  
+                      <h1>
+                        <%=veriYok%>
+                      </h1>
+
+
+
+
+
+                    <%result.forEach((r)=>{
+                        const date = new Date(r.tarih);let localDate = date.toLocaleString("tr-TR", {
+                        format: "dd.MM.yyyy"
+                        });
+
+                        localDate = localDate.substring(0,10 );
+
+
+                        %>
+                        <div class="card">
+                            <div class="card-body col-12">
+
+                                <table>
+                                    <tr>
+                                        <th>Öğretim görevlisi</th>
+                                        <th>Başlık</th>
+                                        <th>Yazı</th>
+                                        <th>Tarih</th>
+                                        <th>Ek</th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">
+                                            <%=r.ogretmenAd+" "+r.ogretmenSoyad%></th>
+                                        <th><%=r.title%></th>
+                                        <th><%=r.text%></th>
+                                        <th><%=localDate%></th>
+                                        <th> <%
+                                            if(r.doc!="" &&r.doc!=null){
+                                            %><a href=" ../files/<%=r.doc%> " >Belgeyi gör</a>
+                                               
+
+                                        </th>
+                                        <%}%>
+                                    </tr>
+
+                                </table>
+
+
+
+
+
+                            </div>
+                        </div>
+                        <%});%>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+<%-include("footer")%>

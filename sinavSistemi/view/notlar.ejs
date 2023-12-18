@@ -1,0 +1,111 @@
+<%-include("header")%>
+
+  <br><br>
+  <% 
+  let veriYok="" ; 
+  if(result.length==0)
+   { veriYok="Henüz girilmiş Notunuz yok.";
+  
+  }
+  
+  %>
+
+    <h1>
+      <%=veriYok%>
+    </h1>
+
+
+    <table class="table">
+      <thead>
+
+        <% let i=0; result.forEach(r=> {
+          i++;
+          let girilenSınav=0;
+          let durum="";
+
+
+
+
+
+          if(r.puan1==null||r.puan1=="" )
+          { r.puan1=0 ;
+
+          girilenSınav=1;
+          }
+          else{r.puan1=r.puan1;
+          girilenSınav=2;
+
+          }
+
+          if(r.puan2==null||r.puan2=="" )
+          { r.puan2=0;
+          girilenSınav=1;
+
+
+          }
+          else{r.puan2=r.puan2;
+          girilenSınav=2;
+
+          }
+
+          durum=(r.puan1+r.puan2)/girilenSınav;
+
+          %>
+
+
+
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Öğretmen adı</th>
+            <th scope="col">Ders Adı</th>
+            <th scope="col">1.Sınav notu</th>
+            <th scope="col">2.Sınav notu</th>
+            <th scope="col">Ders Ortalaması</th>
+            <th scope="col">Geçerlilik durumu</th>
+
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <%=i%>
+          </th>
+          <td>
+            <%=r.ogretmenAd%>
+              <%=r.ogretmenSoyad%>
+          </td>
+          <td>
+            <%=r.dersAdı%>
+          </td>
+          <td>
+            <%=r.puan1%>
+          </td>
+          <td>
+            <%=r.puan2%>
+          </td>
+          <td>
+            <%=durum %>
+          </td>
+          <td>
+            <%= (durum>=50 ? "Geçti":"Kaldı")%>
+          </td>
+
+        </tr>
+
+
+        <%});%>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <%-include("footer")%>

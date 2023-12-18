@@ -1,0 +1,83 @@
+<%-include("header")%>
+        <h1>Sistemdeki sınavlar</h1>
+        <% 
+        let veriYok="" ; 
+        if(result.length==0)
+         { veriYok="Henüz girilmiş Sınavınız yok.";
+        
+        }
+        
+        %>
+      
+          <h1>
+            <%=veriYok%>
+          </h1>
+      
+
+
+        <table>
+            <% result.forEach(v=>{
+                const date = new Date(v.tarih);let localDate = date.toLocaleString("tr-TR", {
+                format: "dd.MM.yyyy"
+                });
+
+                localDate = localDate.substring(0,10 );
+                %> <tr>
+                    <th>Öğretmen</th>
+                    <th>Ders</th>
+                    <th>Başlangıç</th>
+                    <th>Bitiş</th>
+                    <th>Tarih</th>
+                    <th>Sınava katıl</th>
+
+                </tr>
+                <tr>
+                    <td>
+                        <%=v.ogretmenAd%>
+                            <%=v.ogretmenSoyad%>
+                    </td>
+                    <td>
+                        <%=v.dersAd%>
+                    </td>
+                    <td>
+                        <%=v.sınavBaslangic %>
+                    </td>
+                    <td>
+                        <%=v.sinavBitis %>
+                    </td>
+                    <td>
+                        <%=localDate %>
+                    </td>
+                    
+                    <%if(v.isActive==1 &&v.isFinish==0 &&v.katıldımı!=1){%>
+                        <td> <a href="/sinavaKatil/<%=v.sınavId%>">Başla</a></td>
+                        <%}else { %>
+                            <th>Sınav vakti henüz gelmedi veya zaten sınava katıldınız</th>
+
+                            <%} %>
+
+                </tr>
+                <% });%>
+
+        </table>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <%-include("footer")%>

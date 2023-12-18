@@ -1,0 +1,58 @@
+<%-include("yonetimHeader")%>
+
+
+
+
+
+        <br><br>
+        <form method="post" action="/admin/deneme">
+            <ul>
+                <% result.forEach(v=>{%>
+
+                    <% const tarih=new Date(v.sınavTarih); %>
+                        <% const ay=tarih.getMonth() + 1; %>
+                            <% const gun=tarih.getDate(); %>
+                                <% const yil=tarih.getFullYear(); const newTarih=gun+"."+ay+"."+yil; %>
+
+
+                                    <input type="hidden" name="sınavId" value="<%=v.sınavId%>">
+
+                                    <li><label for="inputQuestionCount">sınav tarihi:<%= newTarih%></label>
+                                        <input type="text" name="tarih" value="<%= newTarih%>">
+                                    </li>
+                                    <br>
+                                    <li><label for="inputQuestionCount">sınav başlangıç saati: <%= v.sınavBaslangıc%>
+                                        </label>
+                                        <input type="text" name="baslangicSaat" value="<%= v.sınavBaslangıc%>">
+                                    </li>
+                                    <br>
+
+                                    <li><label for="inputQuestionCount">sınav bitiş saati: <%= v.sınavBitis%></label>
+                                        <input type="text" name="bitisSaat" value="<%= v.sınavBitis%>">
+                                    </li>
+                                    <br>
+
+                                    <li>
+                                        <label for="activeYes">Sınav Başlat:</label><br>
+
+                                        <input type="radio" id="age2" name="active" value="1">
+                                        <label for="activeYes">Aktif</label><br>
+
+                                        <input type="radio" id="age3" name="active" value="0">
+
+                                        <label for="activeNo">Kapalı</label><br>
+                                    </li>
+
+                                    <input type="submit">
+            </ul>
+            <%}); %>
+        </form>
+
+
+
+
+
+
+
+
+        <%-include("yonetimFooter")%>

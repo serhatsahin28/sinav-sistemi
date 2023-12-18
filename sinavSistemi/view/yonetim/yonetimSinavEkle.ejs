@@ -1,0 +1,100 @@
+<%-include("yonetimHeader")%>
+
+
+
+
+
+    <div class="container">
+      <div class="row">
+
+
+       
+
+
+
+
+
+        <h1>Sınav ekle</h1>
+        <p>Aşağıdaki sembole tıklayarak sınav ekleyebilirsiniz...</p>
+        <!-- <a href="/admin/sinav"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+            class="bi bi-plus" viewBox="0 0 16 16">
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+          </svg></a> -->
+      </div>
+    </div>
+    <% if (typeof eklendi !=='undefined' && eklendi !==null) { %>
+      <p>
+        <%= eklendi %>
+          <h2>Soru Sayısı: <span id="questionCount"></span></h2>
+
+          <form id="questionForm" onsubmit="submitForm(event)">
+            <label for="inputQuestionCount">Soru Sayısı:</label>
+            <input type="number" id="inputQuestionCount" name="inputQuestionCount" placeholder="Soru sayısı seçin">
+            <button type="submit">Gönder</button>
+          </form>
+
+
+          <form action="/admin/submit" method="post">
+            <div id="inputContainer"></div><br>
+
+            <input type="submit">
+          </form>
+          <% } else { %>
+            <p>
+
+            </p>
+            <% } %>
+
+
+
+
+
+
+
+
+
+
+            <%-include("yonetimFooter")%>
+
+
+<script>
+
+
+  function submitForm(event) {
+    event.preventDefault();
+    const questionCount = document.getElementById('inputQuestionCount').value;
+
+    document.getElementById('questionCount').textContent = questionCount;
+
+    let inputHTML = '';
+    for (let i = 0; i < questionCount; i++) {
+      inputHTML += `
+        <div>
+          <label for="question${i}">Soru ${i + 1}:</label>
+          <input type="text" id="question${i}" name="question${i}" placeholder="Soru girin">
+
+          <div>
+            ${Array.from({ length: 4 }, (_, j) => {
+        if (j === 0) {
+          return `
+                    <label for="option${j}">Cevap:</label>
+                    <input type="text" id="option${j}" name="option${j}" placeholder="Soru ${i + 1} Cevabı">
+                  `;
+        } else {
+          return `
+          <label for="option${j}">seçenek:${j+1}</label>
+
+                    <input type="text" id="option${j}" name="option${j}" placeholder="Seçenek ${j + 1}">
+                  `;
+        }
+      }).join('')
+        }
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById('inputContainer').innerHTML = inputHTML;
+  }
+</script>
